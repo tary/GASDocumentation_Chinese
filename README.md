@@ -61,7 +61,7 @@
 			- [4.5.5 GameplayEffect堆栈](#455-gameplayeffect堆栈)
 			- [4.5.6 授予Ability](#456-授予ability)
 			- [4.5.7 GameplayEffect标签](#457-gameplayeffect标签)
-			- [4.5.8 免疫系统(Immunity)](#458-免疫系统(Immunity))
+			- [4.5.8 免疫系统](#458-免疫系统)
 			- [4.5.9 GameplayEffectSpec](#459-gameplayeffectspec)
 				- [4.5.9.1 SetByCaller](#4591-setbycaller)
 			- [4.5.10 GameplayEffectContext](#4510-gameplayeffectcontext)
@@ -1122,7 +1122,7 @@ float FAggregatorModChannel::MultiplyMods(const TArray<FAggregatorMod>& InMods, 
 **[⬆ 返回目录](#table-of-contents)**
 
 <a name="concepts-ge-immunity"></a>
-#### 4.5.8 免疫系统(Immunity)
+#### 4.5.8 免疫系统
 
 *免疫系统*指 通过在`GEComponents`上配置`ImmunityGameplayEffectComponent`实现免疫.
 
