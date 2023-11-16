@@ -1122,9 +1122,11 @@ float FAggregatorModChannel::MultiplyMods(const TArray<FAggregatorMod>& InMods, 
 **[⬆ 返回目录](#table-of-contents)**
 
 <a name="concepts-ge-immunity"></a>
-#### 4.5.8 免疫
+#### 4.5.8 免疫(ImmunityGameplayEffectComponent)
 
-`GameplayEffect`可以基于[GameplayTag](#concepts-gt)实现免疫, 有效阻止其他`GameplayEffect`应用. 尽管免疫可以由`Application Tag Requirements`等方式有效地实现, 但是使用该系统可以在`GameplayEffect`被免疫阻止时提供`UAbilitySystemComponent::OnImmunityBlockGameplayEffectDelegate`委托(Delegate).  
+*免疫系统*指 通过在`GEComponents`上配置`ImmunityGameplayEffectComponent`实现免疫.
+
+`GameplayEffect`可以基于[GameplayTag](#concepts-gt)实现免疫, 有效阻止其他`GameplayEffect`应用. 尽管免疫可以由`Application Tag Requirements`等方式有效地实现, 但是使用该*免疫系统*可以在`GameplayEffect`被免疫阻止时提供`UAbilitySystemComponent::OnImmunityBlockGameplayEffectDelegate`委托(Delegate).  
 
 `GrantedApplicationImmunityTags`会检查源(Source)`ASC`(包括源Ability的AbilityTag, 如果有的话)是否包含特定的标签, 这是一种基于确定Character或源(Source)的标签对其所有`GameplayEffect`提供免疫的方法.  
 
@@ -1199,7 +1201,7 @@ float GetSetByCallerMagnitude(FGameplayTag DataTag, bool WarnIfNotFound = true, 
 <a name="concepts-ge-context"></a>
 #### 4.5.10 GameplayEffectContext
 
-[GameplayEffectContext](https://docs.unrealengine.com/en-US/API/Plugins/GameplayAbilities/FGameplayEffectContext/index.html)结构体存有关于`GameplayEffectSpec`创建者(Instigator)和[TargetData](#concepts-targeting-data)的信息, 这也是一个很好的可继承结构体以在[ModifierMagnitudeCalculation](#concepts-ge-mmc)/[GameplayEffectExecutionCalculation](#concepts-ge-ec), [AttributeSet](#concepts-as)和[GameplayCue](#concepts-gc)之间传递任意数据.  
+[GameplayEffectContext](https://docs.unrealengine.com/en-US/API/Plugins/GameplayAbilities/FGameplayEffectContext/index.html)结构体存有关于`GameplayEffectSpec`创建者(Instigator)和[TargetData](#concepts-targeting-data)的信息, 这也是一个很好的可继承结构体以在[GameplayModMagnitudeCalculation](#concepts-ge-mmc)/[GameplayEffectExecutionCalculation](#concepts-ge-ec), [AttributeSet](#concepts-as)和[GameplayCue](#concepts-gc)之间传递任意数据.  
 
 继承`GameplayEffectContext`:  
 
@@ -1215,7 +1217,7 @@ GASShooter使用了一个子结构体`GameplayEffectContext`来添加可以在`G
 **[⬆ 返回目录](#table-of-contents)**
 
 <a name="concepts-ge-mmc"></a>
-#### 4.5.11 Modifier Magnitude Calculation
+#### 4.5.11 Gameplay Modifier Magnitude Calculation
 
 [ModifierMagnitudeCalculations](https://docs.unrealengine.com/en-US/API/Plugins/GameplayAbilities/UGameplayModMagnitudeCalculation/index.html)(`ModMagcCalc`或`MMC`)是在`GameplayEffect`中作为[Modifier](#concepts-ge-mods)使用的强有力的类, 它的功能类似[GameplayEffectExecutionCalculation](#concepts-ge-ec)但是要逊色一些, 最重要的是它是可预测的. 它唯一要做的就是自`CalculateBaseMagnitude_Implementation()`返回浮点值, 你可以在C++和蓝图中继承并重写该函数.  
 
