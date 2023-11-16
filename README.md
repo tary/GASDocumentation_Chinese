@@ -430,7 +430,7 @@ void AGDHeroCharacter::OnRep_PlayerState()
 
 `GameplayTag`必须在`DefaultGameplayTag.ini`中提前定义, UE4编辑器在项目设置中提供了一个界面供开发者管理`GameplayTag`而无需手动编辑DefaultGameplayTag.ini, 该`GameplayTag`编辑器可以创建, 重命名, 搜索引用和删除`GameplayTag`.  
 
-![GameplayTag Editor in Project Settings](https://raw.githubusercontent.com/BillEliot/GASDocumentation_Chinese/main/Images/gameplaytageditor.png)  
+![GameplayTag Editor in Project Settings](Images/gameplaytageditor.png)  
 
 搜索`GameplayTag`会弹出一个类似Reference Viewer的窗口来显示所有引用该`GameplayTag`的资源, 但这不会显示任何引用该`GameplayTag`的C++类.  
 
@@ -526,7 +526,7 @@ virtual void HealthChanged(const FOnAttributeChangeData& Data);
 
 样例项目中有一个将上述逻辑包裹进`ASyncTask`的自定义蓝图节点, 其在`UI_HUD(UMG Widget)`中用于更新生命值, 魔法值和耐力值. 该AsyncTask会一直响应直到手动调用`EndTask()`, 就像在UMG Widget的`Destruct`事件中调用那样. 参阅`AsyncTaskAttributeChanged.h/cpp`.  
 
-![Listen for Attribute Change BP Node](https://raw.githubusercontent.com/BillEliot/GASDocumentation_Chinese/main/Images/attributechange.png) 
+![Listen for Attribute Change BP Node](Images/attributechange.png) 
 
 **[⬆ 返回目录](#table-of-contents)**
 
@@ -545,7 +545,7 @@ virtual void HealthChanged(const FOnAttributeChangeData& Data);
 
 在这个例子中, 我们有一个`无限(Infinite)GameplayEffect`, 其从TestAttrB和TestAttrC `Attribute`以`TestAttrA = (TestAttrA + TestAttrB) * ( 2 * TestAttrC)`公式继承得到TestAttrA, 每次TestAttrB和TestAttrC更新时, TestAttrA都会自动重新计算.  
 
-![Derived Attribute Example](https://raw.githubusercontent.com/BillEliot/GASDocumentation_Chinese/main/Images/derivedattribute.png)  
+![Derived Attribute Example](Images/derivedattribute.png)  
 
 **[⬆ 返回目录](#table-of-contents)**
 
@@ -950,7 +950,7 @@ Override`Modifier`会优先覆盖最后应用的`Modifier`得出的最终值.
 
 |Modifier类型|描述|
 |:-:|:-:|
-|Scalable Float|FScalableFloat结构体可以指向某个横向为变量, 纵向为等级的Data Table, `Scalable Float`会以Ability的当前等级自动读取指定Data Table的某行值(或者在[GameplayEffectSpec](#concepts-ge-spec)中重写的不同等级), 该值还可以进一步被系数处理, 如果没有指定Data Table/Row, 那么就会将其视为1, 因此该系数就可以在所有等级都硬编码为一个值.![ScalableFloat](https://raw.githubusercontent.com/BillEliot/GASDocumentation_Chinese/main/Images/scalablefloats.png)|
+|Scalable Float|FScalableFloat结构体可以指向某个横向为变量, 纵向为等级的Data Table, `Scalable Float`会以Ability的当前等级自动读取指定Data Table的某行值(或者在[GameplayEffectSpec](#concepts-ge-spec)中重写的不同等级), 该值还可以进一步被系数处理, 如果没有指定Data Table/Row, 那么就会将其视为1, 因此该系数就可以在所有等级都硬编码为一个值.![ScalableFloat](Images/scalablefloats.png)|
 |Attribute Based|`Attribute Based Modifier`将Source(`GameplayEffectSpec`的创建者)或Target(`GameplayEffectSpec`的接收者)上的CurrentValue或BaseValue视为`Backing Attribute`, 可以使用系数和Pre与Post系数和来修改它. `Snapshotting`意味着当`GameplayEffectSpec`创建时捕获该`Attribute`, 而`No Snapshotting`意味着当`GameplayEffectSpec`应用时捕获该`Attribute`.|
 |Custom Calculation Class|`Custom Calculation Class`为复杂的`Modifier`提供了最大的灵活性, 该`Modifier`使用了[ModifierMagnitudeCalculation](#concepts-ge-mmc)类, 且可以使用系数和Pre与Post系数和来处理浮点值结果.|
 |Set By Caller|`SetByCaller`Modifier是运行时由Ability或`GameplayEffectSpec`的创建者于`GameplayEffect`之外设置的值, 例如, 如果你想让伤害值随玩家蓄力技能的长短而变化, 那么就需要使用`SetByCaller`. `SetByCaller`本质上是存于`GameplayEffectSpec`中的`TMap<FGameplayTag, float>`, `Modifier`只是告知`Aggregator`去寻找与提供的`GameplayTag`相关联的`SetByCaller`值. `Modifier`使用的`SetByCaller`只能使用该概念的`GameplayTag`形式, `FName`形式在此处不适用. 如果`Modifier`被设置为`SetByCaller`, 但是带有正确`GameplayTag`的`SetByCaller`在`GameplayEffectSpec`中不存在, 那么游戏会抛出一个运行时错误并返回0, 这可能在`Divide`操作中造成问题. 参阅[SetByCallers](#concepts-ge-spec-setbycaller)获取更多关于如何使用`SetByCaller`的信息.|
@@ -1085,7 +1085,7 @@ float FAggregatorModChannel::MultiplyMods(const TArray<FAggregatorMod>& InMods, 
 
 样例项目包含一个用于监听`GameplayEffect`堆栈变化的自定义蓝图节点, HUD UMG Widget使用它来更新玩家拥有的被动护盾堆栈(层数). 该`AsyncTask`将会一直响应直到手动调用`EndTask()`, 就像在UMG Widget的`Destruct`事件中调用那样. 参阅`AsyncTaskAttributeChanged.h/cpp`.  
 
-![Listen for GameplayEffect Stack Change BP Node](https://raw.githubusercontent.com/BillEliot/GASDocumentation_Chinese/main/Images/gestackchange.png)
+![Listen for GameplayEffect Stack Change BP Node](Images/gestackchange.png)
 
 **[⬆ 返回目录](#table-of-contents)**
 
@@ -1124,7 +1124,7 @@ float FAggregatorModChannel::MultiplyMods(const TArray<FAggregatorMod>& InMods, 
 <a name="concepts-ge-immunity"></a>
 #### 4.5.8 免疫系统
 
-*免疫系统*指 通过在`GEComponents`上配置`ImmunityGameplayEffectComponent`实现免疫.
+*免疫系统* 指通过在`GEComponents`上配置`ImmunityGameplayEffectComponent`实现免疫.
 
 `GameplayEffect`可以基于[GameplayTag](#concepts-gt)实现免疫, 有效阻止其他`GameplayEffect`应用. 尽管免疫可以由`Application Tag Requirements`等方式有效地实现, 但是使用该*免疫系统*可以在`GameplayEffect`被免疫阻止时提供`UAbilitySystemComponent::OnImmunityBlockGameplayEffectDelegate`委托(Delegate).  
 
@@ -1170,7 +1170,7 @@ float FAggregatorModChannel::MultiplyMods(const TArray<FAggregatorMod>& InMods, 
 
 为了在蓝图中指定`SetByCaller`值, 请使用相应形式(`GameplayTag`或`FName`)的蓝图节点.  
 
-![Assigning SetByCaller](https://raw.githubusercontent.com/BillEliot/GASDocumentation_Chinese/main/Images/setbycaller.png)
+![Assigning SetByCaller](Images/setbycaller.png)
 
 为了在蓝图中读取`SetByCaller`值, 需要在蓝图中创建自定义节点.  
 
@@ -1343,7 +1343,7 @@ float Damage = FMath::Max<float>(Spec.GetSetByCallerMagnitude(FGameplayTag::Requ
 
 在这个截图例子中, 我们给捕获的伤害值`Attribute`增加了50, 你也可以将其设为`Override`来直接传入硬编码值.  
 
-![Backing Data Attribute Calculation Modifier](https://raw.githubusercontent.com/BillEliot/GASDocumentation_Chinese/main/Images/calculationmodifierbackingdataattribute.png)
+![Backing Data Attribute Calculation Modifier](Images/calculationmodifierbackingdataattribute.png)
 
 当`ExecutionCalculation`捕获该`Attribute`时会读取这个值.  
 
@@ -1362,7 +1362,7 @@ ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().Damag
 
 在这个截图例子中, 我们使用`Data.Damage GameplayTag`增加50到一个临时变量.  
 
-![Backing Data Temporary Variable Calculation Modifier](https://raw.githubusercontent.com/BillEliot/GASDocumentation_Chinese/main/Images/calculationmodifierbackingdatatempvariable.png)
+![Backing Data Temporary Variable Calculation Modifier](Images/calculationmodifierbackingdatatempvariable.png)
 
 添加Backing临时变量到你的`ExecutionCalculation`构造函数:  
 
@@ -1453,7 +1453,7 @@ UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Cost")
 FScalableFloat Cost;
 ```
 
-![Cost GE With MMC](https://raw.githubusercontent.com/BillEliot/GASDocumentation_Chinese/main/Images/costmmc.png)
+![Cost GE With MMC](Images/costmmc.png)
 
 2. **重写`UGameplayAbility::GetCostGameplayEffect()`.** 重写该函数并在[运行时](#concepts-ge-dynamic)创建一个用来读取`GameplayAbility`中花费值的`GameplayEffect`.  
 
@@ -1517,7 +1517,7 @@ void UPGGameplayAbility::ApplyCooldown(const FGameplayAbilitySpecHandle Handle, 
 
 下面图片中, 冷却时间`Modifier`被设置为`SetByCaller`, 其`Data Tag`为`Data.Cooldown`. `Data.Cooldown`就是上面代码中的`OurSetByCallerTag`.  
 
-![Cooldown GE with SetByCaller](https://raw.githubusercontent.com/BillEliot/GASDocumentation_Chinese/main/Images/cooldownsbc.png)  
+![Cooldown GE with SetByCaller](Images/cooldownsbc.png)  
 
 2. 使用[MMC](#concepts-ge-mmc). 它的设置与上文所提的一致, 除了不需要在`Cooldown GE`和`ApplyCost`中设置`SetByCaller`作为持续时间, 相反, 我们需要将持续时间设置为`Custom Calculation类`并将其指向新创建的`MMC`.  
 
@@ -1579,7 +1579,7 @@ float UPGMMC_HeroAbilityCooldown::CalculateBaseMagnitude_Implementation(const FG
 }
 ```
 
-![Cooldown GE with MMC](https://raw.githubusercontent.com/BillEliot/GASDocumentation_Chinese/main/Images/cooldownmmc.png)  
+![Cooldown GE with MMC](Images/cooldownmmc.png)  
 
 **[⬆ 返回目录](#table-of-contents)**
 
@@ -1635,7 +1635,7 @@ bool APGPlayerState::GetCooldownRemainingForTag(FGameplayTagContainer CooldownTa
 
 样例项目包含一个用于监听冷却开始和结束的自定义蓝图节点, HUD UMG Widget使用它来更新陨石技能的剩余冷却时间, 该`AsyncTask`会一直响应直到手动调用`EndTask()`, 就像在UMG Widget的`Destruct`事件中调用那样. 参阅`AsyncTaskAttributeChanged.h/cpp`.  
 
-![Listen for Cooldown Change BP Node](https://raw.githubusercontent.com/BillEliot/GASDocumentation_Chinese/main/Images/cooldownchange.png)  
+![Listen for Cooldown Change BP Node](Images/cooldownchange.png)  
 
 **[⬆ 返回目录](#table-of-contents)**
 
@@ -1780,7 +1780,7 @@ Epic的[Action RPG](https://www.unrealengine.com/marketplace/en-US/slug/action-r
 
 为了访问`GameplayEffectContainer`中的`GESpec`以求做一些诸如添加`SetByCaller`的操作, 请使用`FGameplayEffectContainer`结构体中的`GESpec`数组索引访问`GESpec`引用, 这要求你需要提前知道想要访问的`GESpec`的索引.  
 
-![SetByCaller with a GameplayEffectContainer](https://raw.githubusercontent.com/BillEliot/GASDocumentation_Chinese/main/Images/gecontainersetbycaller.png)  
+![SetByCaller with a GameplayEffectContainer](Images/gecontainersetbycaller.png)  
 
 `GameplayEffectContainer`还包含一个可选的用于[定位(Target)](#concepts-targeting-containers)的高效方法.
 
@@ -1818,9 +1818,9 @@ Epic的[Action RPG](https://www.unrealengine.com/marketplace/en-US/slug/action-r
 
 所有的`GameplayAbility`都会有它们各自由你的游戏逻辑重写的`ActivateAbility()`函数, 附加的逻辑可以添加到`EndAbility()`, 其会在`GameplayAbility`完成或取消时执行.  
 
-一个简单的`GameplayAbility`流程图: ![Simple GameplayAbility Flowchart](https://raw.githubusercontent.com/BillEliot/GASDocumentation_Chinese/main/Images/abilityflowchartsimple.png)  
+一个简单的`GameplayAbility`流程图: ![Simple GameplayAbility Flowchart](Images/abilityflowchartsimple.png)  
 
-一个更复杂`GameplayAbility`流程图: ![Complex GameplayAbility Flowchart](https://raw.githubusercontent.com/BillEliot/GASDocumentation_Chinese/main/Images/abilityflowchartcomplex.png)  
+一个更复杂`GameplayAbility`流程图: ![Complex GameplayAbility Flowchart](Images/abilityflowchartcomplex.png)  
 
 复杂的Ability可以使用多个相互交互(激活, 取消等等)的`GameplayAbility`实现.  
 
@@ -2282,7 +2282,7 @@ GASShooter对半自动和全自动枪支使用了相同的批处理`GameplayAbil
 
 GASShooter暴露了一个蓝图节点以允许上文提到的仅客户端调用的Ability所使用的批处理Ability来触发批处理Ability. (译者注: 此处相当拗口, 但原文翻译确实如此, 配合项目浏览也许会更容易明白些.)  
 
-![Activate Batched Ability](https://raw.githubusercontent.com/BillEliot/GASDocumentation_Chinese/main/Images/batchabilityactivate.png)  
+![Activate Batched Ability](Images/batchabilityactivate.png)  
 
 **[⬆ 返回目录](#table-of-contents)**
 
@@ -2361,7 +2361,7 @@ Task->ReadyForActivation();
 
 在蓝图中, 我们只需使用为`AbilityTask`创建的蓝图节点, 不必调用`ReadyForActivate()`, 其由`Engine/Source/Editor/GameplayTasksEditor/Private/K2Node_LatentGameplayTaskCall.cpp`自动调用. `K2Node_LatentGameplayTaskCall`也会自动调用`BeginSpawningActor()`和`FinishSpawningActor()`(如果它们存在于你的`AbilityTask`类中, 查看`AbilityTask_WaitTargetData`), 再强调一遍, `K2Node_LatentGameplayTaskCall`只会对蓝图做这些自动操作, 在C++中, 我们必须手动调用`ReadyForActivation()`, `BeginSpawningActor()`和`FinishSpawningActor()`.  
 
-![Blueprint WaitTargetData AbilityTask](https://raw.githubusercontent.com/BillEliot/GASDocumentation_Chinese/main/Images/abilitytask.png)  
+![Blueprint WaitTargetData AbilityTask](Images/abilitytask.png)  
 
 如果想要手动取消`AbilityTask`, 只需在蓝图(Async Task Proxy)或C++中对`AbilityTask`对象调用`EndTask()`.  
 
@@ -2412,13 +2412,13 @@ GAS自带的`AbilityTask`可以使用挂载在`CharacterMovementComponent`中的
 
 在成功应用(未被Tag或Immunity阻塞)的`GameplayEffect`中填写所有应该触发的`GameplayCue`的`GameplayTag`.  
 
-![GameplayCue Triggered from a GameplayEffect](https://raw.githubusercontent.com/BillEliot/GASDocumentation_Chinese/main/Images/gcfromge.png)  
+![GameplayCue Triggered from a GameplayEffect](Images/gcfromge.png)  
 
 ##### 手动调用
 
 `UGameplayAbility`提供了蓝图节点来`Execute`, `Add`或`Remove` GameplayCue.  
 
-![GameplayCue Triggered from a GameplayAbility](https://raw.githubusercontent.com/BillEliot/GASDocumentation_Chinese/main/Images/gcfromga.png)  
+![GameplayCue Triggered from a GameplayAbility](Images/gcfromga.png)  
 
 在C++中, 你可以在`ASC`中直接调用函数(或者在你的`ASC`子类中暴露它们到蓝图):  
 
@@ -2819,7 +2819,7 @@ FGameplayTargetDataFilterHandle UGDTargetDataFilterBlueprintLibrary::MakeGDNameF
 
 GASShooter对火箭筒二技能制导火箭锁定的目标使用了`Reticle`. 敌人身上的红色标识就是`Reticle`, 相似的白色图像是火箭筒的准星.  
 
-![Reticles in GASShooter](https://raw.githubusercontent.com/BillEliot/GASDocumentation_Chinese/main/Images/gameplayabilityworldreticle.png)  
+![Reticles in GASShooter](Images/gameplayabilityworldreticle.png)  
 
 `Reticle`带有一些面向设计师的`BlueprintImplementableEvents`(它们被设计用来在蓝图中开发):  
 
@@ -2995,11 +2995,11 @@ PRAGMA_ENABLE_OPTIMIZATION_ACTUAL
 
 在游戏中的控制台输入`showdebug abilitysystem`. 该特性被分为三"页", 三页都会显示当前拥有的`GameplayTag`, 在控制台输入`AbilitySystem.Debug.NextCategory`来换页.  
 
-第一页显示了所有`Attribute`的`CurrentValue`: ![First Page of showdebug abilitysystem](https://raw.githubusercontent.com/BillEliot/GASDocumentation_Chinese/main/Images/showdebugpage1.png)  
+第一页显示了所有`Attribute`的`CurrentValue`: ![First Page of showdebug abilitysystem](Images/showdebugpage1.png)  
 
-第二页显示了所有应用到你的`持续(Duration)`和`无限(Infinite)GameplayEffect`, 它们的堆栈数, 使用的`GameplayTag`和`Modifier`. ![Second Page of showdebug abilitysystem](https://raw.githubusercontent.com/BillEliot/GASDocumentation_Chinese/main/Images/showdebugpage2.png)  
+第二页显示了所有应用到你的`持续(Duration)`和`无限(Infinite)GameplayEffect`, 它们的堆栈数, 使用的`GameplayTag`和`Modifier`. ![Second Page of showdebug abilitysystem](Images/showdebugpage2.png)  
 
-第三页显示了所有授予到你的`GameplayAbility`, 无论其是否正在运行, 无论其是否被阻止激活, 和当前正在运行的`AbilityTask`的状态.  ![Third Page of showdebug abilitysystem](https://raw.githubusercontent.com/BillEliot/GASDocumentation_Chinese/main/Images/showdebugpage3.png)  
+第三页显示了所有授予到你的`GameplayAbility`, 无论其是否正在运行, 无论其是否被阻止激活, 和当前正在运行的`AbilityTask`的状态.  ![Third Page of showdebug abilitysystem](Images/showdebugpage3.png)  
 
 你可以使用`PageUp`和`PageDown`切换Target, 页面只显示你本地控制的`Character`中的`ASC`数据, 然而, 使用`AbilitySystem.Debug.NextTarget`和`AbilitySystem.Debug.PrevTarget`可以显示其他`ASC`的数据, 但是不会显示调试信息的上半部分, 也不会更新绿色目标长方体, 因此无法知道当前定位的是哪个`ASC`, 该BUG已经被提交到[https://issues.unrealengine.com/issue/UE-90437.](https://issues.unrealengine.com/issue/UE-90437).  
 
@@ -3122,15 +3122,15 @@ Fortnite大逃杀(Fortnite Battle Royale)世界中有很多可损坏的`AActor`(
 
 监听`Attribute`修改:  
 
-![Listen for Attributes Changes BP Node](https://raw.githubusercontent.com/BillEliot/GASDocumentation_Chinese/main/Images/attributeschange.png)  
+![Listen for Attributes Changes BP Node](Images/attributeschange.png)  
 
 监听冷却时间修改:  
 
-![Listen for Cooldown Change BP Node](https://raw.githubusercontent.com/BillEliot/GASDocumentation_Chinese/main/Images/cooldownchange.png)  
+![Listen for Cooldown Change BP Node](Images/cooldownchange.png)  
 
 监听`GE`堆栈修改:  
 
-![Listen for GameplayEffect Stack Change BP Node](https://raw.githubusercontent.com/BillEliot/GASDocumentation_Chinese/main/Images/gestackchange.png)  
+![Listen for GameplayEffect Stack Change BP Node](Images/gestackchange.png)  
 
 **[⬆ 返回目录](#table-of-contents)**
 
